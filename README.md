@@ -1,74 +1,65 @@
-Introduction
-======================
-Welcome to Hack Jam 2013! If you don't know already, a Hack Jam is a low-stakes, low-pressure, shorter hackathon that Hackers at Berkeley holds at least once every semester.
+# Introduction
 
-If you've never hacked before, don't be afraid! This is a guide that will help you through your first hack. We'll be building Cheeper©, a lightweight, simpler version of Twitter.
+Welcome! If you've never hacked before, don't worry. This is a guide that will help you through your first hack. We'll be building **Cheeper**, a lightweight, simpler version of Twitter.
 
-After you finish this, you'll have:
+TODO end result link
 
-* Created a Flask web server
-* Used a templating engine to render a web page
-* Used a web form to send information to a web server
-* Written SQL to populate and use a `sqlite` database
+# How to get help
 
-Acknowledgements
-----------------------
-* Thanks to Kurt Spindler for his inspirational, original [beginner hack](https://github.com/kespindler/hackjam2-dropedit)
+If you find yourself getting stuck, don't just stare at the code for an hour. Instead, do the following:
 
-Step 0: Before you begin
-=========================
-Hacking is centered around collaboration. We all hear about those amazing people who create amazing hacks solo and release them to the world. However, I would argue that working alone is inefficient. If you find yourself getting stuck, don't just stare at the code for an hour. Instead, do the following:
-* Use Google! Results from [stackoverflow.com](http://stackoverflow.com) are an amazing resource. You get to utilize the knowledge of the global computer science developer community. However, don't just copy-paste answers from the web. Make sure you understand exactly what's going on before you copy-paste anything.
-* Ask your neighbours. Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to make friends and find future potential project partners!
-* Ask H@B members for help. Hack Jam is a learning experience for most people. It's a good time to take on something new so many people will be in your situation. Don't be afraid to ask people at Hack Jam for help. Chances are, they'll be able to assist you in some way.
+* **Use Google.** Results from [stackoverflow.com](http://stackoverflow.com) are an amazing resource. You get to utilize the knowledge of the global computer science developer community. However, don't just copy-paste answers from the web. Make sure you understand exactly what's going on before you copy-paste anything.
+* **Ask your neighbors.** Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to make friends and find future potential project partners!
+* **Ask H@B members for help.** Several H@B members have volunteered to assist people with this hack.
 
-With all this in mind, several H@B members have volunteered to assist people with the beginner hack. So, if you ever need help, look for these awesome people:
+# Step 1: Make sure you have Python 3.4
 
-<table>
-    <tr>
-    <td><img src="http://www-inst.eecs.berkeley.edu/~cs61a/fa13/imgs/gsis/sharad-vikram.jpg" width="200" height="auto"></td>
-    <td><img src="https://lh3.googleusercontent.com/-oqbtv7g-ots/UcSbxgu4p3I/AAAAAAAACMc/SbXRYSe_eus/s604-no/920146_10151641982947594_144941694_o.jpg" width="200" height="auto"></td>
-    </tr>
-    <tr>
-    <td>Sharad Vikram</td>
-    <td>Richie Zeng</td>
-    </tr>
-</table>
+**You probably already have Python 3.4 installed** if you're taking CS 61A. To check, type
 
-Step 1: Learn and install Python
-=========================
+    python3 --version
 
-The rest of the guide will assume some basic knowledge of the Python 2 language. Hopefully you've picked up some Python from 61A, but if you haven't, head over to the official Python [tutorial](http://docs.python.org/tutorial), which is pretty good! 
+in your command line.
 
-You need to install Python 2.7 to complete this hack. You can do that [here](http://www.python.org/download/releases/2.7/). If you have OSX, you already should have Python 2.7 installed.
+- If you have Python 3.4 or greater, go to the next step.
+- If you do not have Python 3.4 or greater, you will need to install it. To install Python:
 
-Step 2: Set up your environment
-================================
+### Windows
+Visit [https://www.python.org/downloads/](https://www.python.org/downloads/) and click the big yellow download button for Python 3. Then install it.
 
-Before any hack, you need to make sure all your dependencies are set up. 
+### Mac
+First, make sure you have Homebrew. If not, visit the [Homebrew website](http://brew.sh/) and follow the instructions to install it.
 
-Python has two amazing tools, called `virtualenv` and `pip` that enable developers to create sandboxes for their projects and easily install any online packages and libraries that other people have written. We'll be using mainly these two tools.
+Once you have Homebrew installed, just do `brew install python3` in your Terminal.
 
-The first thing you need is to make sure you have a Python package called `setuptools` installed. Here's how to install it:
+### Linux
+Type `sudo apt-get install python3` in your Terminal.
 
-* Ubuntu: `sudo apt-get install python-setuptools`
-* OSX: You're in luck! OSX comes with Python 2.7 and setuptools already installed.
-* Windows: Download the file from https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py and then run `python ez_setup.py`. Then add `C:\Python27\Scripts` to your PATH.
+# Step 2: Install Flask
+
+Flask is a web app server for Python. It makes it really easy to write web apps. Let's get it installed.
+
+In your command line, type
+
+    pip3 install flask
+
+- If you get the error `'pip3' is not recognized as an internal or external command` blah blah blah, you're probably using Windows. You will need to set your PATH variable so that Windows can locate pip3. You will need to add `C:\<Your Python installation directory here>\Scripts\` to your PATH variable. Ask Google or your neighbor if you're unsure of how to do this, or ask a H@B officer if you're really stuck.
+
+# Step 3: Get coding
+
+Now that you have Flask installed, you can get started. First, create a folder to hold your new project:
+
+    mkdir cheeper
+    cd cheeper
+    touch server.py
+
+You just created the `cheeper` folder and a `server.py` file inside of it. Now open up `server.py` in your favorite text editor.
+
+// TODO everything below
 
 
+# Step 2.5: Create your project folder!
 
-Installing `setuptools` will give you a command line tool called `easy_install`, which we'll use to install `virtualenv`.
-
-Enter the following in your terminal to install `virtualenv`.
-```
-$ sudo easy_install virtualenv
-```
-
-Now a quick word about `virtualenv`. It's a Python tool that allows you to create "sandboxes," or isolated environments in which you can code. When you need a Python library, you could install it globally, which means all your Python projects on your computer could use it. You could also install it locally, which means you install libraries on a project-by-project basis and no project will have any more dependencies available than it needs. The "sandbox" mentality means that we make sure each project stands alone, which means a lot when you may want to deploy these projects to remote computers.
-
-`virtualenv` comes with a "package manager" called `pip`. `pip` allows you to actually install libraries from online. Suppose I want to use a library that parses PDFs for me. BAM! `pip install pdfminer`. If I want a library that scrapes web pages for me: BAM! `pip install beautifulsoup`. You get the idea. `pip` stores all the awesome libraries that people have built for Python and with a single command, you get access to them.
-
-Now that you have `virtualenv` installed, you have to create a folder for your project.
+This is exciting. Run these commands (you should know what they do):
 
 ```
 $ mkdir cheeper
