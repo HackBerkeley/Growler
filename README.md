@@ -2,7 +2,7 @@
 
 Welcome! If you've never hacked before, don't worry. This is a guide that will help you through your first hack. We'll be building **Cheeper**, a simple version of Twitter, in Python.
 
-TODO end result link deployed on Heroku
+Here's the final result: [http://cheeper-demo.herokuapp.com/](http://cheeper-demo.herokuapp.com/)
 
 # How to get help
 
@@ -281,7 +281,7 @@ Now let's commit (save) the changes and close the connection.
 conn.commit()
 conn.close()
 ```
-Now save the file and run it by doing `python3 init_db.py`. It should create the `cheeps.db` file and print out something like `[(u'bob', u'100', u'Hello world!')]` to show that reading from the database was successful.
+Now save the file and run it by doing `python3 init_db.py`. It should create the `cheeps.db` file and print out something like `[('bob', '100', 'Hello world!')]` to show that reading from the database was successful.
 
 Awesome! Hopefully now you have a basic idea of how sqlite works. Now let's integrate it into our site. Read this short guide in the Flask documentation: [Using SQLite 3 with Flask](http://flask.pocoo.org/docs/patterns/sqlite3/)
 
@@ -334,13 +334,11 @@ def hello():
     print(cheeps)
     return app.send_static_file('index.html')
 ```
-This won't change anything when you visit your homepage, but if you check your terminal window running the server, you should see the list of cheeps getting printed out. You should have one cheep in there if you ran the `init_db.py` script. Something like this.
+Restart your server and then visit your website. Nothing will have changed, but if you check your terminal window running the server, you should see the list of cheeps getting printed out. You should have one cheep in there if you ran the `init_db.py` script. Something like this:
 ```
-(venv)Richies-MacBook-Air:cheeper richzeng$ python server.py
  * Running on http://127.0.0.1:5000/
- * Restarting with reloader
-[(u'richie', u'100', u'Hello world!')]
-127.0.0.1 - - [22/Sep/2013 17:45:53] "GET / HTTP/1.1" 304 -
+[('bob', '100', 'Hello world!')]
+127.0.0.1 - - [16/Jul/2014 23:10:15] "GET / HTTP/1.1" 200 -
 ```
 Now we need to add in logic to save the cheeps once we submit the form. For that, we'll need to edit the `receive_cheap` function. Remember the `request.form`? That is basically a dictionary containing all the data we submitted in the form. We'll need to grab that data and pass it into our `db_add_cheep` function.
 ```python
@@ -350,24 +348,22 @@ def receive_cheep():
     db_add_cheep(request.form['name'], request.form['cheep'])
     return "Success!"
 ```
-That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage and check your terminal window, you should see more cheeps getting printed out.
+That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage, refresh your browser, and check your terminal window, you should see more cheeps getting printed out.
 
 Awesome! The database is hooked up and ready to go.
 
-Step 9: Displaying our cheeps
-===========================
-Even though the database is showing up, nothing is showing up on our page yet! That's because we're still serving a static html page. We need to write up a template. Don't worry, it's not too bad. Hopefully you remember what you read in the flask quickstart guide earlier, if not check out the [Rendering Templates](http://flask.pocoo.org/docs/quickstart/#rendering-templates) section again.
+# Step 8: Displaying our cheeps
 
-There are many templating languages out there, each with a slightly different syntax, but their use is basically the same. Think about what a Facebook profile looks like. Every user has a different Facebook profile: different photos, different friends, different posts. But it would be a pain of Facebook had to make a new static HTML page for each user. Instead, you'll notice that every Facebook profile has a the same basic structure and design. The cover photo is on the top, the profile picture is in the top left, and the wall goes down the middle of the profile. The goal of a templating language is to establish this basic structure, and then leave parts of it ready to be filled in based on the URL and any options you pass in.
+Even though the database is showing up, nothing is showing up on our page yet! That's because we're still serving a static html page. We need to write up a *template*. Don't worry, it's not too bad. Hopefully you remember what you read in the flask quickstart guide earlier, if not check out the [Rendering Templates](http://flask.pocoo.org/docs/quickstart/#rendering-templates) section again.
 
-The templating language we're going to be using is called Jinja. It comes built in with Flask and is maintained by the same group that maintains Flask. You can learn more about it [here](http://jinja.pocoo.org/docs/). We're going to use it in a pretty basic way for now.
+What's a template? Think about what a Facebook profile looks like. Every user has a different Facebook profile: different photos, different friends, different posts. But it would be a pain of Facebook had to make a new static HTML page for each user. Instead, you'll notice that every Facebook profile has a the same basic structure and design. The cover photo is on the top, the profile picture is in the top left, and the wall goes down the middle of the profile. The goal of a templating language is to establish this basic structure, and then leave parts of it ready to be filled in based on the URL and any options you pass in.
 
-First off, we need to make some changes to our `server.py` file to work with Jinja. Import `render_template` from flask. Your imports should look like this now.
+Let's write a template. First, we'll need to import `render_template` from flask. Your imports should look like this now.
 ```python
 import sqlite3
 import time
 from flask import Flask, g, request, render_template
-````
+```
 Now replace `send_static_file` with `render_template` inside of the `hello` function. Now it should look like this.
 ```python
 @app.route("/")
@@ -376,13 +372,13 @@ def hello():
     print(cheeps)
     return render_template('index.html')
 ```
-But wait, if you try to visit your homepage right now it won't show up! The problem now is that `render_template` looks for a folder called `templates` for all of your template files. Right now our HTML file is in `static/index.html`! Create a folder called `templates` and copy/move `index.html` into it. Now your original homepage should appear again.
+But wait, if you try to visit your homepage right now it won't show up! The problem now is that `render_template` looks for a folder called `templates` for all of your template files. Right now our HTML file is in `static/index.html`! Rename the `static` folder and call it `templates`. Now your original homepage should appear again.
 
 So how does the template get the information from our server? Conveniently, `render_template` handles that for you! Simply pass in a keyword argument into your call to `render_template`.
 ```python
     return render_template('index.html', cheeps=cheeps)
 ```
-Now we can access the name `cheeps` from our `index.html` file. Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/). Lets `index.html` it and have it display our first cheep. Remember, a cheep is a tuple with three elements (name, time, cheep), and `cheeps` is a list of them. Find the div with the id `"feed"` and insert the following.
+Now we can access the name `cheeps` from our `index.html` file. Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/). Lets edit `index.html` and have it display our first cheep. Remember, a cheep is a tuple with three elements (name, time, cheep), and `cheeps` is a list of them. Find the `div` container with the id `"feed"` and insert the following.
 ```html
 <div id="feed">
     <h2> Cheeps </h2>
@@ -422,23 +418,22 @@ Now your site should redirect to the homepage after you post a cheep!
 You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
 ![](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
 
-Step 10: Afterward
-===========================
-Now you've probably gotten a good taste of web development. There are a ton of things you can do from here! Here are a few ideas. We've written a couple mini tutorials that will help you out.
+# Step 9: Now what?
 
-Extending the functionality
+Now you've gotten a taste of web development. There are a ton of things you can do from here! Here are a few ideas.
+
+### Easy tweaks
 * Order tweets by most recent ones first
 * Display how long ago the tweet was made
-* Make the Cheep post success page redirect to your home.
-* Display only the first 10 tweets, with an option to laod more
+* [Make your site pretty with Bootstrap](https://github.com/sharadmv/beginner-hackjam/tree/master/bootstrap)
+
+### Medium difficulty
+* Display only the first 10 tweets, with an option to load more
 * Allow image/video cheeps
+* [Make your cheeps appear in realtime](https://github.com/sharadmv/beginner-hackjam/tree/master/websocket)
+
+### Challenging exercises
 * Make a user login and registration system
 * Add followers
 * Add a news feed (ranking tweets, updates in real time)
-* [Make your cheeps appear in realtime](https://github.com/sharadmv/beginner-hackjam/tree/master/websocket)
-
-Going further
-* [Make your site pretty with Bootstrap](https://github.com/sharadmv/beginner-hackjam/tree/master/bootstrap)
-* [Deploy your site to the interwebz with Heroku](https://github.com/sharadmv/beginner-hackjam/tree/master/heroku)
-* Make an Android app
-* Make an iOS app
+* [Deploy your site to the Internet with Heroku](https://github.com/sharadmv/beginner-hackjam/tree/master/heroku)
