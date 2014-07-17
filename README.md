@@ -1,8 +1,8 @@
 # Introduction
 
-Welcome! If you've never hacked before, don't worry. This is a guide that will help you through your first hack. We'll be building **Cheeper**, a lightweight, simpler version of Twitter.
+Welcome! If you've never hacked before, don't worry. This is a guide that will help you through your first hack. We'll be building **Cheeper**, a simple version of Twitter, in Python.
 
-TODO end result link
+TODO end result link deployed on Heroku
 
 # How to get help
 
@@ -36,7 +36,7 @@ Type `sudo apt-get install python3` in your Terminal.
 
 # Step 2: Install Flask
 
-Flask is a web app server for Python. It makes it really easy to write web apps. Let's get it installed.
+Flask is a web framework for Python. It makes it really easy to write web apps. Let's get it installed.
 
 In your command line, type
 
@@ -52,117 +52,72 @@ Now that you have Flask installed, you can get started. First, create a folder t
     cd cheeper
     touch server.py
 
+- If you are on Windows, you don't have the `touch` command. Just open up your text editor and save a file called `server.py` in the `cheeper` folder.
+
 You just created the `cheeper` folder and a `server.py` file inside of it. Now open up `server.py` in your favorite text editor.
-
-// TODO everything below
-
-
-# Step 2.5: Create your project folder!
-
-This is exciting. Run these commands (you should know what they do):
-
-```
-$ mkdir cheeper
-$ cd cheeper
-```
-
-We want to make the `cheeper` directory a `virtualenv` environment, so we run the command:
-```
-$ virtualenv venv --distribute
-```
-
-If you look inside `cheeper/` now, you'll see that there is a folder called `venv/` with 3 folders inside called `bin/`,`include/`, and `lib/`.
-
-To jump into the `virtualenv` you've created, make sure you're in the `cheeper` directory and run:
-```
-$ source venv/bin/activate
-```
-
-Your terminal prompt should now have a `(venv)` at the front. This is how you know you're inside your virtual environment. 
-
-
-Whoa, this is awesome. You're in your own sandbox now. You can see what libraries you currently have installed by running:
-
-```
-$ pip freeze
-```
-
-To leave your `virtualenv`, just run:
-```
-$ deactivate
-```
-
-We'll be in our `virtualenv` in the following sections. If you're curious as to what else it can do, look up more on [this site](https://pypi.python.org/pypi/virtualenv).
-
-Step 3: Setting up Flask
-=====================================
-[Flask](http://flask.pocoo.org/) is a Python web framework.
-
-After this point, make sure you're working in your `virtualenv`. (It should say "`(venv)`" at the left of your terminal prompt).
-
-To install Flask just run:
-```
-$ pip install flask
-```
-
-Wow that was simple (hopefully)! Remember that if at any point, stuff isn't installing/working properly, ask a neighbour or the nearest H@B office for help.
 
 Okay, so let's get started with Flask. 
 
-First, what exactly is a web framework? When a person goes to a website, they send an HTTP request to that website, asking for the site's content. Since we're building the website, our web framework, Flask, will handle requests that are sent to us, and send back our site's content via HTTP response.
+First, what exactly is a web framework? When a person goes to a website, they send what's called an *HTTP request* to that website, asking for the site's content. Our web framework, Flask, will handle requests that are sent to us, and send back our site's content via an *HTTP response*.
 
-Let's try running the "Hello World" example on the [Flask website](http://flask.pocoo.org).
+Let's try building Hello World.
 
-Copy and paste the example and put it into a file called `server.py`. This code imports Flask, creates an application (`app`), and defines a "route" (we'll go over that in a second), and finally starts up the server.
+```python
+from flask import Flask
+app = Flask(__name__)
 
-Try running it to make sure Flask was installed correctly.
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
 ```
-$ python server.py
-```
-If it says Flask isn't importing, make sure you're in the `virtualenv`.
-If it says something like: "Running on http://127.0.0.1:5000", then it's working! Test it yourself by going to either `localhost:5000` or `127.0.0.1:5000` in your favorite browser. It should say "Hello World!".
+
+Copy and paste the example and put it in your `server.py` file. This code imports Flask, creates an application (`app`), and defines a "route" (we'll go over that in a second), and finally starts up the server.
+
+Try running it:
+
+    python3 server.py
+
+If it says something like: `Running on http://127.0.0.1:5000`, then it's working! Test it yourself by going to either `http://localhost:5000` or `http://127.0.0.1:5000` in your favorite browser. It should say "Hello World!".
 
 > *Note*: both `localhost` and `127.0.0.1` are addresses for your own computer and `5000` is the "port" number.
 
 Now that you have this working, please go through the examples on the Flask [quick start page](http://flask.pocoo.org/docs/quickstart/) and familiarize yourself with the Flask framework. You can stop once you hit [Accessing Request Data](http://flask.pocoo.org/docs/quickstart/#accessing-request-data). Make sure you understand what a route is and how to do routing with Flask. Hint: decorators.
 
-Step 4: Creating a user interface
-===========================
-Let's create our home page for Cheeper©. Create a directory in your `cheeper` directory called `static`. This will be the folder for our *static* files, or the files that don't change and are just retrieved and sent down by Flask when a browser asks for them.
+# Step 4: Creating a user interface
+
+Let's create our home page for Cheeper. Create a directory in your `cheeper` directory called `static`. This will be the folder for our *static* files, or the files that don't change and are just retrieved and sent down by Flask when a browser asks for them.
 
 Your project directory should look like this now:
 ```
 cheeper/
-    venv/
-        bin/
-        include/
-        lib/
     server.py
     static/
 ```
 
-Now inside your static folder, create a file called `index.html`.
-In it, put the following skeleton.
+Now inside your static folder, create a file called `index.html`. In it, put the following skeleton.
 ```html
 <html>
   <head>
     <title>Cheeper - better than Twitter</title>
   </head>
   <body>
-  Hello World!
+    Hello World!
   </body>
 </html>
 ```
 
-This is HTML, or HyperText Markup Language. It's a language that browsers understand and use to render web pages. In HTML files, you define the content and layout of your web page. `index.html` is the canonical name for the default web page that's rendered when you go to a site, so `index.html` will function as the home page.
+This is HTML. It's a language that browsers understand and use to render web pages. In HTML files, you define the content and layout of your web page. `index.html` is the name for the default web page that's rendered when you go to a site, so `index.html` will function as the home page.
 
-Right now, if you open the file in your web browser, you'll get a page that says "Hello World!", but on your tab, it should say what we put into the `<title>` tag.
+If you open the file in your web browser, you'll get a page that says "Hello World!", and on your tab, it should say what we put into the `<title>` tag.
 
-Now, I suggest reading up on the basics of HTML. Make sure you understand how to create forms. Here's a [Codecademy tutorial](http://www.codecademy.com/courses/web-beginner-en-Vfmnp/0/2) on creating web forms for your edification!
+Now, I suggest reading up on the basics of HTML. Make sure you understand how to create forms. Here's a [Codecademy tutorial](http://www.codecademy.com/courses/web-beginner-en-Vfmnp/0/2) on creating web forms!
 
-So now for some user interface design (which is something I, the writer of this guide, am terrible at, so feel free to rage at my designs). And of course, if you are design inclined yourself, feel free to throw away my suggestions and use your own.
+So now for some user interface design. If you are design inclined yourself, feel free to throw away my suggestions and use your own.
 
-Our Cheeper© webpage should include some glamorous logo and a space to type your cheep and cheep it to the world. We also need a feed, to display all the cheeps that have been cheeped.
+Our Cheeper webpage should include a glamorous logo and a space to type your cheep and cheep it to the world. We also need a feed, to display all the cheeps that have been cheeped.
 
 First let's add the logo, which will just be really big text. We can do this with the `<h1>`. Add an `<h1>` tag into the body of `index.html`, which will be our logo.
 
@@ -191,18 +146,10 @@ Now let's add the form to write and submit your cheeps. Cheeps are only 76 chara
 ...
 ```
 
-Awesome! Our awesome, beautiful user interface is almost done. Let's now add a space for the Cheeper© feed to appear.
+Awesome! Our awesome, beautiful user interface is almost done. Let's now add a container (in HTML, this is known as a `div`) for the Cheeper feed to appear, just before the closing `body` tag.
 
 ```html
 ...
-<body>
-  <h1>Cheeper</h1>
-  <form>
-    Name:
-    <input name="name" type="text" /> 
-    Cheep:
-    <input name="cheep" type="text" maxlength="76" /> 
-    <input type="submit" />
   </form>
   <div id="feed">
   </div>
@@ -211,8 +158,8 @@ Awesome! Our awesome, beautiful user interface is almost done. Let's now add a s
 ```
 Cool! This is possibly the best UI I've ever designed. If you feel that it needs improvement, make it look as pretty as you want. Look into using *CSS*.
 
-Step 5: Serving static webpages
-===========================
+# Step 5: Serving static webpages
+
 Our html page, `index.html` is only visible on our own computers right now. We need to hook it up to our Flask server, which is accessible from other computers. We can do this pretty easily with some Flask magic.
 
 Flask's job will be to grab `index.html` and return it for the route `/`, the homepage.
@@ -227,16 +174,18 @@ def hello():
 ...
 ```
 
-Restart your server to see the changes by going to `localhost:5000`.
+Stop your server using Ctrl-C and start it again (`python3 server.py`), and then go to `localhost:5000`.
 
-> *Note*: You can see your changes to `index.html` immediately by just refreshing, but you need to restart your server (using Ctrl-C) everytime you modify `server.py` to see the changes.
-
+> *Note*: You can see your changes to `index.html` immediately by just refreshing, but you need to restart your server (using Ctrl-C) every time you modify `server.py`.
 
 Woot! Your site should now have a basic form for submitting cheeps showing.
 
-Step 6: Sending requests to Flask
-==============================
-Let's quickly establish the notion of a *front end* and a *back end*. The front end is what the "client," or web browser sees. Anyone who visits your website is considered a user. The back end refers to the the application that handles storing, manipulating, and sending data back to the front end. Specifically in our hack, the front end corresponds to the files in `static/`, as they are what the user sees and interacts with. The back end corresponds with our `server.py`, so far. We'll be adding more files to our back end component later.
+# Step 6: Sending requests to Flask
+
+Let's quickly establish the notion of a *front end* and a *back end*.
+
+- **Front end**: what the "client," or web browser sees. In our case, files in `static/` are the front end.
+- **Back end**: the application that handles storing, manipulating, and sending data back to the front end. In our case, `server.py` is the back end, so far.
 
 Right now, Flask just spits out our `index.html` file. What we now want to do is to send the data inputted into your web form to Flask. In `index.html`, add an `action` attribute and a `method` attribute with the following values to your form.
 
@@ -251,7 +200,8 @@ Right now, Flask just spits out our `index.html` file. What we now want to do is
 </form>
 ```
 
-A form's *action* is the URL to which it submits its data. When you click the submit button, the form gathers all its data and sends it as an HTTP request to the given URL. Right now, we're sending the form data to the `/api/cheep` URL. The form's *method* is the HTTP [method](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). Essentially, a POST request means that we want to *store* data on the server.
+- The form's **action** is the URL to which it submits its data. When you click the submit button, the form gathers all its data and sends it to the given URL. We're sending the form data to the `/api/cheep` URL.
+- The form's **method** is the HTTP method, which can be GET, POST, or some other more obscure methods. Essentially, a POST request means that we want to *store* data on the server.
 
 Now that we send the data, we need to handle the data we receive in Flask.  Let's go back to `server.py`.
 
@@ -276,42 +226,37 @@ def receive_cheep():
 
 > Note: at this point, you might be wondering what the `@app.route(...)` above the function definition does. It's what we call a function *decorator*. Decorators augments the behavior of a function. The `app.route` decorator makes your ordinary Python function into a server route. Pretty amazing! If you want to read more about decorators, check out [this link](http://www.shutupandship.com/2012/01/python-decorators-i-functions-that.html).
 
-In this new code we just added, we're adding a new route for `/api/cheep`, which would correspond the url `localhost:5000/api/cheep`. We make sure it handles POST requests by modifying the decorator. In the function body itself, we're just printing out the data sent up by the form (for debugging purposes) and then returning a success message.
+In this new code we just added, we're adding a new route for `/api/cheep`, which would correspond to the url `localhost:5000/api/cheep`. We make sure it handles POST requests by saying so. In the function body itself, we're just printing out the data sent up by the form (for debugging purposes) and then returning a success message.
 
 To test this out, restart your server and go to `localhost:5000`. Fill out your form with some data and hit the submit button. It should take you to a page that says "Success!" on it. Now look back at your server log (your terminal where you started the server). It should say something like: 
 ```
-ImmutableMultiDict([('cheep', u'hello world!'), ('name', u'jbiebz5000')])
+ImmutableMultiDict([('cheep', 'testing 123'), ('name', 'bob jones')])
 ```
 
 Don't worry exactly what this means. Just make sure it is filled with the data you submitted.
 
-Step 7: Take a break!
-===========================
-All right. There's a lot of information coming up. This is a good time to grab a drink, get some food and socialize a bit. Meet all the awesome people around you!
+# Step 7: Storing our cheeps
 
-Step 8: Storing our cheeps
-===========================
 So at this point, our HTML page should be sending successful requests to the Flask server, but our cheeps aren't showing up on our home page!
 
-Our job will now be to store the cheeps that are sent up to Flask. We'll do this with a *database*. A database allows us to store data on the hard disk in some organized fashion; we'll should also be able to retrieve the data from the database easily.
+Our job will now be to store the cheeps that are sent up to Flask. We'll do this with a *database*. A database allows us to store data on the hard disk and retrieve it later.
 
 This is a very general pattern for web applications. The user will input some data on the front end. The data will be sent up via an HTTP request to the web server. The web server will then store the data in some sort of database. 
 
 Later, when the user wants to see their data, they'll request data from the web server via HTTP request, the server will ask the database for the data, then send it back down in the HTTP response.
 
-We'll be using the [sqlite](http://www.sqlite.org/about.html) database to store our cheeps. It's conveniently packaged with Python, so we don't need to install anything!
+We'll be using the `sqlite3` database to store our cheeps. It's conveniently packaged with Python, so we don't need to install anything!
 
-Okay, so what's `sqlite`. Well, you might have heard of SQL before. It stands for *Structured Query Language* and it's a language you use to query a database for data. In SQL databases, data is organized into *tables*, which have rows and columns. `sqlite` is just an example of a SQL database. If you're curious as to what differentiates `sqlite` from other databases, check out the [wiki page](http://en.wikipedia.org/wiki/SQLite).
+So what's `sqlite3`? Well, you might have heard of SQL before. It stands for *Structured Query Language* and it's a language you use to ask, or query, a database for data. In SQL databases, data is organized into *tables*, which have rows and columns. `sqlite3` is just an example of a SQL database.
 
-Let's begin using `sqlite`! If you're curious, you can find the Python documentation for sqlite3 [here](http://docs.python.org/2/library/sqlite3.html).
+As mentioned above, a database is a collection of tables, kind of like an Excel spreadsheet, where each column is a different piece of information that an entry needs, and each row is an entry in the table.
 
-A database is a collection of tables. You can think of a table sort of like an Excel spreadsheet, where each column is a different piece of information that an entry needs, and each row is an entry in the table.
-
-Let's play with sqlite a bit first. Make a file called `init_db.py` at the top level of your `cheeper` folder. Put the following in.
+Let's play with sqlite a bit first. Make a file called `init_db.py` in your `cheeper` folder. Put the following in.
 ```python
 import sqlite3
 conn = sqlite3.connect('cheeps.db')
 ```
+
 This imports the sqlite package and opens a connection to the database file named `cheeps.db`. If the file doesn't exist, sqlite will create it automatically.
 ```python
 c = conn.cursor()
@@ -320,11 +265,11 @@ We'll go more into detail on this later. A cursor basically points to a specific
 ```python
 c.execute("CREATE TABLE cheeps (name, datetime, cheep)")
 ```
-This creates a table named `cheeps` inside the `temp.db` database with three columns: name, datetime, and cheep. Each cheep will need to have this information. Cool! Now let's try and add a cheep!
+This creates a table named `cheeps` inside the `cheeps.db` database with three columns: name, datetime, and cheep. Each cheep will need to have this information. Cool! Now let's try and add a cheep!
 ```python
-c.execute("INSERT INTO cheeps VALUES ('richie', '100', 'Hello world!')")
+c.execute("INSERT INTO cheeps VALUES ('bob', '100', 'Hello world!')")
 ```
-This creates a cheep by the user `richie` with the text `Hello World!`, and that this cheep was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
+This creates a cheep by the user `bob` with the text `Hello World!`, and that this cheep was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
 
 Let's double check that this works. Now we can read from the database and we should be able to see our cheep!
 ```python
@@ -336,7 +281,7 @@ Now let's commit (save) the changes and close the connection.
 conn.commit()
 conn.close()
 ```
-Now save the file and run it by doing `python init_db.py`. It should create the `cheeps.db` file and print out something like `[(u'richie', u'100', u'Hello world!')]` to show that reading from the database was successful.
+Now save the file and run it by doing `python3 init_db.py`. It should create the `cheeps.db` file and print out something like `[(u'bob', u'100', u'Hello world!')]` to show that reading from the database was successful.
 
 Awesome! Hopefully now you have a basic idea of how sqlite works. Now let's integrate it into our site. Read this short guide in the Flask documentation: [Using SQLite 3 with Flask](http://flask.pocoo.org/docs/patterns/sqlite3/)
 
