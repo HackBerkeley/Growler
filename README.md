@@ -24,7 +24,6 @@ If you find yourself getting stuck, don't just stare at the code for an hour. In
 **You probably already have Python 3.4 installed** if you're taking CS 61A. To check, type
 
     python3 --version
-
 in your command line.
 
 - If you have Python 3.4 or greater, go to the next step.
@@ -357,6 +356,8 @@ def receive_hakk():
 ```
 That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage, refresh your browser, and check your terminal window, you should see more hakks getting printed out.
 
+If SQL at all seems a bit intimidating for you, don't worry. There are better an eaisier solutions for databses (which unfortunately may take too long to explain in depth in this workshop.) But feel free to google and ask about SQLAlchemy and MongoDB.
+
 Awesome! The database is hooked up and ready to go.
 
 # Step 8: Displaying our hakks
@@ -448,11 +449,11 @@ body {
 ```
 What this does is it takes the body and puts it in the center with `margin: auto`
 
-The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it.
+The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it. The code åis pretty self explanatory.
 
-In addition, the background color has been changed to a nice a lovely **menthe**
+In addition, the background color has been changed to a nice a lovely **menthe**.
 
-If you want to understand or learn CSS more feel free to bug **David** after this workshop is over.
+If you want to understand or learn CSS more feel free to bug **David** or just ask around!
 
 Finally, to finish off, let's link this css file in our template by adding this line of code after the `</title>` tag in your main template:
 
@@ -460,8 +461,8 @@ Finally, to finish off, let's link this css file in our template by adding this 
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 ```
 
-You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
-![](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
+You've just built your first hack! Show your friends! Tell your mom! Earn some Good Boy Points!
+ Start a billion dollar company! Make your family finally proud of you.[](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
 
 # Step 10: Now what?
 
@@ -483,3 +484,4 @@ Now you've gotten a taste of web development. Welcome to the wonderful world. Th
 * Add followers
 * Add a news feed (ranking tweets, updates in real time)
 * [Deploy your site to the Internet with Heroku](https://github.com/sharadmv/beginner-hackjam/tree/master/heroku)
+* Make a billion dollars by transforming this hack into a company
