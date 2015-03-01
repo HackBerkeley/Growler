@@ -457,21 +457,7 @@ If you want to understand or learn CSS more feel free to bug **David** after thi
 Finally, to finish off, let's link this css file in our template by adding this line of code after the `</title>` tag in your main template:
 
 ```html
-html {
-  background-color: #AAF0D1;
-}
-
-body {
-  font-family: Sans-serif;
-  max-width: 500px;
-  margin: auto;
-  padding: 20px;
-  margin-top: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 1px solid;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 ```
 
 You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
