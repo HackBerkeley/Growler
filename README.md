@@ -42,6 +42,8 @@ Type `sudo apt-get install python3` in your Terminal.
 
 # Step 2: Install Flask
 
+If you're on OSX, make sure you have [XCode and Xcode command line tools installed](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/)
+
 Flask is a web framework for Python. It makes it really easy to write web apps. Let's get it installed.
 
 In your command line, type
@@ -449,7 +451,7 @@ body {
 ```
 What this does is it takes the body and puts it in the center with `margin: auto`
 
-The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it. The code åis pretty self explanatory.
+The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it. This s pretty self explanatory.
 
 In addition, the background color has been changed to a nice a lovely **menthe**.
 
@@ -461,8 +463,8 @@ Finally, to finish off, let's link this css file in our template by adding this 
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 ```
 
-You've just built your first hack! Show your friends! Tell your mom! Earn some Good Boy Points!
- Start a billion dollar company! Make your family finally proud of you.[](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
+You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
+![](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
 
 # Step 10: Now what?
 
