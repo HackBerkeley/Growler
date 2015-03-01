@@ -1,0 +1,15 @@
+html {
+  background-color: #00FF7F;
+}
+
+body {
+  font-family: Sans-serif;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px solid;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}

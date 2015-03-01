@@ -1,16 +1,23 @@
-# Introduction
+# Welcome to HackJam Spring 2015
 
-Welcome! If you've never hacked before, don't worry. This is a guide that will help you through your first hack. We'll be building **Cheeper**, a simple version of Twitter, in Python.
+Welcome to HackJam! If you haven't figured out by now, HackJam is an awesome low pressure hella chill hackathon that the amazing group Hackers @ Berkeley puts on once a semester. It's a great place to work on a side project and network with other amazing hackers.
 
-Here's the final result: [http://cheeper-demo.herokuapp.com/](http://cheeper-demo.herokuapp.com/)
+If you've never hacked before, don't worry. And if you have hacked before but want to learn how to do web development with python, you're in the perfect place.
 
-# How to get help
+This is a guide that will help you through your first hack. We'll be building **Hakker**, a simple twitter like communication app for dysfunctional teams, in flask/python.
+
+# Step 0: How to get help
 
 If you find yourself getting stuck, don't just stare at the code for an hour. Instead, do the following:
 
 * **Use Google.** Results from [stackoverflow.com](http://stackoverflow.com) are an amazing resource. You get to utilize the knowledge of the global computer science developer community. However, don't just copy-paste answers from the web. Make sure you understand exactly what's going on before you copy-paste anything.
-* **Ask your neighbors.** Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to make friends and find future potential project partners!
-* **Ask H@B members for help.** Several H@B members have volunteered to assist people with this hack.
+* **Ask your neighbors.** Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to **make friends** and find future potential startup cofounders! 
+* **Ask H@B members for help.** Several H@B members have volunteered to assist people today. But you can just ask any of us to be honest. Well, err most of us. We're nice people. We don't bite. Here are just a few of them.
+ <table><tr><td><img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10885498_877064285678413_1508690135448109619_n.jpg?oh=206866b690a8b7c102133473370e024b&oe=55896EBF&__gda__=1431147062_291e876cb41f9d56acf62322f58456a7" width="200" height="auto"></td>
+ <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/426802_3271389590516_1481383110_n.jpg?oh=2cc91f2c3848877f197bbf35a75e8dab&oe=55488DCF" width="200" height="auto"></td>
+ <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xpf1/t31.0-8/51813_4726469958853_780877942_o.jpg" width="200" height="auto"></td>
+ <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xpa1/l/t31.0-8/10849013_1568766236703666_7856351810450671921_o.jpg" width="200" height="auto"></td>
+ </tr><tr><td>Smitha Milli</td><td>Mitchell Karchemsky</td><td>Brian Chu</td><td>David Bui</td></tr></table>
 
 # Step 1: Make sure you have Python 3.4
 
@@ -48,19 +55,19 @@ In your command line, type
 
 Now that you have Flask installed, you can get started. First, create a folder to hold your new project:
 
-    mkdir cheeper
-    cd cheeper
+    mkdir hakker
+    cd hakker
     touch server.py
 
-- If you are on Windows, you don't have the `touch` command. Just open up your text editor and save a file called `server.py` in the `cheeper` folder.
+- If you are on Windows, you don't have the `touch` command. Just open up your text editor and save a file called `server.py` in the `hakker` folder.
 
-You just created the `cheeper` folder and a `server.py` file inside of it. Now open up `server.py` in your favorite text editor.
+You just created the `hakker` folder and a `server.py` file inside of it. Now open up `server.py` in your favorite text editor.
 
 Okay, so let's get started with Flask. 
 
 First, what exactly is a web framework? When a person goes to a website, they send what's called an *HTTP request* to that website, asking for the site's content. Our web framework, Flask, will handle requests that are sent to us, and send back our site's content via an *HTTP response*.
 
-Let's try building Hello World.
+Let's try building Hello World, but with a twist.
 
 ```python
 from flask import Flask
@@ -68,7 +75,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return "Go Bears!"
 
 if __name__ == "__main__":
     app.run()
@@ -88,11 +95,11 @@ Now that you have this working, please go through the examples on the Flask [qui
 
 # Step 4: Creating a user interface
 
-Let's create our home page for Cheeper. Create a directory in your `cheeper` directory called `static`. This will be the folder for our *static* files, or the files that don't change and are just retrieved and sent down by Flask when a browser asks for them.
+Let's create our home page for Hakker. Create a directory in your `hakker` directory called `static`. This will be the folder for our *static* files, or the files that don't change and are just retrieved and sent down by Flask when a browser asks for them.
 
 Your project directory should look like this now:
 ```
-cheeper/
+hakker/
     server.py
     static/
 ```
@@ -101,7 +108,7 @@ Now inside your static folder, create a file called `index.html`. In it, put the
 ```html
 <html>
   <head>
-    <title>Cheeper - better than Twitter</title>
+    <title>Hakker - better than Twitter</title>
   </head>
   <body>
     Hello World!
@@ -117,36 +124,36 @@ Now, I suggest reading up on the basics of HTML. Make sure you understand how to
 
 So now for some user interface design. If you are design inclined yourself, feel free to throw away my suggestions and use your own.
 
-Our Cheeper webpage should include a glamorous logo and a space to type your cheep and cheep it to the world. We also need a feed, to display all the cheeps that have been cheeped.
+Our Hakker webpage should include a glamorous logo and a space to type your hakk and hakk it to the world. We also need a feed, to display all the hakks that have been hakked.
 
 First let's add the logo, which will just be really big text. We can do this with the `<h1>`. Add an `<h1>` tag into the body of `index.html`, which will be our logo.
 
 ```html
 ...
 <body>
-  <h1>Cheeper</h1>
+  <h1>Hakker</h1>
 </body>
 ...
 ```
 
-Now let's add the form to write and submit your cheeps. Cheeps are only 76 characters long, right?
+Now let's add the form to write and submit your hakks. Hakks are only 76 characters long, right?
 
 ```html
 ...
 <body>
-  <h1>Cheeper</h1>
+  <h1>Hakker</h1>
   <form>
     Name:
     <input name="name" type="text" /> 
-    Cheep:
-    <input name="cheep" type="text" maxlength="76" /> 
+    Hakk:
+    <input name="hakk" type="text" maxlength="76" /> 
     <input type="submit" />
   </form>
 </body>
 ...
 ```
 
-Awesome! Our awesome, beautiful user interface is almost done. Let's now add a container (in HTML, this is known as a `div`) for the Cheeper feed to appear, just before the closing `body` tag.
+Awesome! Our awesome, beautiful user interface is almost done. Let's now add a container (in HTML, this is known as a `div`) for the Hakker feed to appear, just before the closing `body` tag.
 
 ```html
 ...
@@ -178,7 +185,7 @@ Stop your server using Ctrl-C and start it again (`python3 server.py`), and then
 
 > *Note*: You can see your changes to `index.html` immediately by just refreshing, but you need to restart your server (using Ctrl-C) every time you modify `server.py`.
 
-Woot! Your site should now have a basic form for submitting cheeps showing.
+Woot! Your site should now have a basic form for submitting hakks showing.
 
 # Step 6: Sending requests to Flask
 
@@ -191,16 +198,16 @@ Right now, Flask just spits out our `index.html` file. What we now want to do is
 
 ```html
 ...
-<form action='/api/cheep' method="POST">
+<form action='/api/hakk' method="POST">
   Name:
   <input name="name" type="text" /> 
-  Cheep:
-  <input name="cheep" type="text" maxlength="76" /> 
+  Hakk:
+  <input name="hakk" type="text" maxlength="76" /> 
   <input type="submit" />
 </form>
 ```
 
-- The form's **action** is the URL to which it submits its data. When you click the submit button, the form gathers all its data and sends it to the given URL. We're sending the form data to the `/api/cheep` URL.
+- The form's **action** is the URL to which it submits its data. When you click the submit button, the form gathers all its data and sends it to the given URL. We're sending the form data to the `/api/hakk` URL.
 - The form's **method** is the HTTP method, which can be GET, POST, or some other more obscure methods. Essentially, a POST request means that we want to *store* data on the server.
 
 Now that we send the data, we need to handle the data we receive in Flask.  Let's go back to `server.py`.
@@ -213,67 +220,67 @@ from flask import Flask, request
 
 The request object allows us to get data and information about incoming HTTP requests.
 
-Now we need to create a route for `/api/cheep` to actually receive the data.
+Now we need to create a route for `/api/hakk` to actually receive the data.
 
 Add the following method into your `server.py` before the `if __name__ == "__main__":`. I'll explain what it does in a bit.
 
 ```python
-@app.route("/api/cheep", methods=["POST"])
-def receive_cheep():
+@app.route("/api/hakk", methods=["POST"])
+def receive_hakk():
     print(request.form)
     return "Success!"
 ```
 
 > Note: at this point, you might be wondering what the `@app.route(...)` above the function definition does. It's what we call a function *decorator*. Decorators augments the behavior of a function. The `app.route` decorator makes your ordinary Python function into a server route. Pretty amazing! If you want to read more about decorators, check out [this link](http://www.shutupandship.com/2012/01/python-decorators-i-functions-that.html).
 
-In this new code we just added, we're adding a new route for `/api/cheep`, which would correspond to the url `localhost:5000/api/cheep`. We make sure it handles POST requests by saying so. In the function body itself, we're just printing out the data sent up by the form (for debugging purposes) and then returning a success message.
+In this new code we just added, we're adding a new route for `/api/hakk`, which would correspond to the url `localhost:5000/api/hakk`. We make sure it handles POST requests by saying so. In the function body itself, we're just printing out the data sent up by the form (for debugging purposes) and then returning a success message.
 
 To test this out, restart your server and go to `localhost:5000`. Fill out your form with some data and hit the submit button. It should take you to a page that says "Success!" on it. Now look back at your server log (your terminal where you started the server). It should say something like: 
 ```
-ImmutableMultiDict([('cheep', 'testing 123'), ('name', 'bob jones')])
+ImmutableMultiDict([('hakk', 'testing 123'), ('name', 'bob jones')])
 ```
 
 Don't worry exactly what this means. Just make sure it is filled with the data you submitted.
 
-# Step 7: Storing our cheeps
+# Step 7: Storing our hakks
 
-So at this point, our HTML page should be sending successful requests to the Flask server, but our cheeps aren't showing up on our home page!
+So at this point, our HTML page should be sending successful requests to the Flask server, but our hakks aren't showing up on our home page!
 
-Our job will now be to store the cheeps that are sent up to Flask. We'll do this with a *database*. A database allows us to store data on the hard disk and retrieve it later.
+Our job will now be to store the hakks that are sent up to Flask. We'll do this with a *database*. A database allows us to store data on the hard disk and retrieve it later.
 
 This is a very general pattern for web applications. The user will input some data on the front end. The data will be sent up via an HTTP request to the web server. The web server will then store the data in some sort of database. 
 
 Later, when the user wants to see their data, they'll request data from the web server via HTTP request, the server will ask the database for the data, then send it back down in the HTTP response.
 
-We'll be using the `sqlite3` database to store our cheeps. It's conveniently packaged with Python, so we don't need to install anything!
+We'll be using the `sqlite3` database to store our hakks. It's conveniently packaged with Python, so we don't need to install anything!
 
 So what's `sqlite3`? Well, you might have heard of SQL before. It stands for *Structured Query Language* and it's a language you use to ask, or query, a database for data. In SQL databases, data is organized into *tables*, which have rows and columns. `sqlite3` is just an example of a SQL database.
 
 As mentioned above, a database is a collection of tables, kind of like an Excel spreadsheet, where each column is a different piece of information that an entry needs, and each row is an entry in the table.
 
-Let's play with sqlite a bit first. Make a file called `init_db.py` in your `cheeper` folder. Put the following in.
+Let's play with sqlite a bit first. Make a file called `init_db.py` in your `hakker` folder. Put the following in.
 ```python
 import sqlite3
-conn = sqlite3.connect('cheeps.db')
+conn = sqlite3.connect('hakks.db')
 ```
 
-This imports the sqlite package and opens a connection to the database file named `cheeps.db`. If the file doesn't exist, sqlite will create it automatically.
+This imports the sqlite package and opens a connection to the database file named `hakks.db`. If the file doesn't exist, sqlite will create it automatically.
 ```python
 c = conn.cursor()
 ```
 We'll go more into detail on this later. A cursor basically points to a specific row in the database, which allows a programmer to make changes row by row. Now we can begin executing our SQL queries.
 ```python
-c.execute("CREATE TABLE cheeps (name, datetime, cheep)")
+c.execute("CREATE TABLE hakks (name, datetime, hakk)")
 ```
-This creates a table named `cheeps` inside the `cheeps.db` database with three columns: name, datetime, and cheep. Each cheep will need to have this information. Cool! Now let's try and add a cheep!
+This creates a table named `hakks` inside the `hakks.db` database with three columns: name, datetime, and hakk. Each hakk will need to have this information. Cool! Now let's try and add a hakk!
 ```python
-c.execute("INSERT INTO cheeps VALUES ('bob', '100', 'Hello world!')")
+c.execute("INSERT INTO hakks VALUES ('bob', '100', 'Hello world!')")
 ```
-This creates a cheep by the user `bob` with the text `Hello World!`, and that this cheep was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
+This creates a hakk by the user `bob` with the text `Hello World!`, and that this hakk was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
 
-Let's double check that this works. Now we can read from the database and we should be able to see our cheep!
+Let's double check that this works. Now we can read from the database and we should be able to see our hakk!
 ```python
-c.execute("SELECT * FROM cheeps")
+c.execute("SELECT * FROM hakks")
 print(c.fetchall())
 ```
 Now let's commit (save) the changes and close the connection.
@@ -281,7 +288,7 @@ Now let's commit (save) the changes and close the connection.
 conn.commit()
 conn.close()
 ```
-Now save the file and run it by doing `python3 init_db.py`. It should create the `cheeps.db` file and print out something like `[('bob', '100', 'Hello world!')]` to show that reading from the database was successful.
+Now save the file and run it by doing `python3 init_db.py`. It should create the `hakks.db` file and print out something like `[('bob', '100', 'Hello world!')]` to show that reading from the database was successful.
 
 Awesome! Hopefully now you have a basic idea of how sqlite works. Now let's integrate it into our site. Read this short guide in the Flask documentation: [Using SQLite 3 with Flask](http://flask.pocoo.org/docs/patterns/sqlite3/)
 
@@ -293,7 +300,7 @@ import time
 from flask import Flask, request, g
 
 app = Flask(__name__)
-DATABASE = 'cheeps.db'
+DATABASE = 'hakks.db'
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -310,49 +317,49 @@ def close_connection(exception):
 
 Now we can write a few more helper functions to make it easier to interact with the database.
 ```python
-def db_read_cheeps():
+def db_read_hakks():
     cur = get_db().cursor()
-    cur.execute("SELECT * FROM cheeps")
+    cur.execute("SELECT * FROM hakks")
     return cur.fetchall()
 ```
-This (as the function name suggests) reads the cheeps from the database. The function `fetchall` returns them as a list.
+This (as the function name suggests) reads the hakks from the database. The function `fetchall` returns them as a list.
 ```python
-def db_add_cheep(name, cheep):
+def db_add_hakk(name, hakk):
     cur = get_db().cursor()
     t = str(time.time())
-    cheep_info = (name, t, cheep)
-    cur.execute("INSERT INTO cheeps VALUES (?, ?, ?)", cheep_info)
+    hakk_info = (name, t, hakk)
+    cur.execute("INSERT INTO hakks VALUES (?, ?, ?)", hakk_info)
     get_db().commit()
 ```
-Here we are using the `time` function in the `time` module to get the timestamp for the cheep. This gives us the number of seconds since the epoch (January 1, 1970). The `execute` function also allows us to pass in a tuple, so we can add in question marks in the query string and they will automatically get filled with the data in our `cheep_info` tuple. Finally, after we insert our cheep into the database, we need to commit the changes.
+Here we are using the `time` function in the `time` module to get the timestamp for the hakk. This gives us the number of seconds since the epoch (January 1, 1970). The `execute` function also allows us to pass in a tuple, so we can add in question marks in the query string and they will automatically get filled with the data in our `hakk_info` tuple. Finally, after we insert our hakk into the database, we need to commit the changes.
 
-Now that we have all the database logic, we can add it into our route functions. We want all the most recent cheeps to appear on the home page, so the `hello` function should use the `db_read_cheeps` function to display the list of cheeps. Before we do the logic to display the cheeps, let's first double check that this works by simply printing out the cheeps.
+Now that we have all the database logic, we can add it into our route functions. We want all the most recent hakks to appear on the home page, so the `hello` function should use the `db_read_hakks` function to display the list of hakks. Before we do the logic to display the hakks, let's first double check that this works by simply printing out the hakks.
 ```python
 @app.route("/")
 def hello():
-    cheeps = db_read_cheeps()
-    print(cheeps)
+    hakks = db_read_hakks()
+    print(hakks)
     return app.send_static_file('index.html')
 ```
-Restart your server and then visit your website. Nothing will have changed, but if you check your terminal window running the server, you should see the list of cheeps getting printed out. You should have one cheep in there if you ran the `init_db.py` script. Something like this:
+Restart your server and then visit your website. Nothing will have changed, but if you check your terminal window running the server, you should see the list of hakks getting printed out. You should have one hakk in there if you ran the `init_db.py` script. Something like this:
 ```
  * Running on http://127.0.0.1:5000/
 [('bob', '100', 'Hello world!')]
 127.0.0.1 - - [16/Jul/2014 23:10:15] "GET / HTTP/1.1" 200 -
 ```
-Now we need to add in logic to save the cheeps once we submit the form. For that, we'll need to edit the `receive_cheap` function. Remember the `request.form`? That is basically a dictionary containing all the data we submitted in the form. We'll need to grab that data and pass it into our `db_add_cheep` function.
+Now we need to add in logic to save the hakks once we submit the form. For that, we'll need to edit the `receive_cheap` function. Remember the `request.form`? That is basically a dictionary containing all the data we submitted in the form. We'll need to grab that data and pass it into our `db_add_hakk` function.
 ```python
-@app.route("/api/cheep", methods=["POST"])
-def receive_cheep():
+@app.route("/api/hakk", methods=["POST"])
+def receive_hakk():
     print(request.form)
-    db_add_cheep(request.form['name'], request.form['cheep'])
+    db_add_hakk(request.form['name'], request.form['hakk'])
     return "Success!"
 ```
-That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage, refresh your browser, and check your terminal window, you should see more cheeps getting printed out.
+That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage, refresh your browser, and check your terminal window, you should see more hakks getting printed out.
 
 Awesome! The database is hooked up and ready to go.
 
-# Step 8: Displaying our cheeps
+# Step 8: Displaying our hakks
 
 Even though the database is showing up, nothing is showing up on our page yet! That's because we're still serving a static html page. We need to write up a *template*. Don't worry, it's not too bad. Hopefully you remember what you read in the flask quickstart guide earlier, if not check out the [Rendering Templates](http://flask.pocoo.org/docs/quickstart/#rendering-templates) section again.
 
@@ -368,41 +375,41 @@ Now replace `send_static_file` with `render_template` inside of the `hello` func
 ```python
 @app.route("/")
 def hello():
-    cheeps = db_read_cheeps()
-    print(cheeps)
+    hakks = db_read_hakks()
+    print(hakks)
     return render_template('index.html')
 ```
 But wait, if you try to visit your homepage right now it won't show up! The problem now is that `render_template` looks for a folder called `templates` for all of your template files. Right now our HTML file is in `static/index.html`! Rename the `static` folder and call it `templates`. Now your original homepage should appear again.
 
 So how does the template get the information from our server? Conveniently, `render_template` handles that for you! Simply pass in a keyword argument into your call to `render_template`.
 ```python
-    return render_template('index.html', cheeps=cheeps)
+    return render_template('index.html', hakks=hakks)
 ```
-Now we can access the name `cheeps` from our `index.html` file. Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/). Lets edit `index.html` and have it display our first cheep. Remember, a cheep is a tuple with three elements (name, time, cheep), and `cheeps` is a list of them. Find the `div` container with the id `"feed"` and insert the following.
+Now we can access the name `hakks` from our `index.html` file. Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/). Lets edit `index.html` and have it display our first hakk. Remember, a hakk is a tuple with three elements (name, time, hakk), and `hakks` is a list of them. Find the `div` container with the id `"feed"` and insert the following.
 ```html
 <div id="feed">
-    <h2> Cheeps </h2>
-    <div class="cheep">
-        <b>{{ cheeps[0][0] }}</b>
-        <p>{{ cheeps[0][2] }}</p>
+    <h2> Hakks </h2>
+    <div class="hakk">
+        <b>{{ hakks[0][0] }}</b>
+        <p>{{ hakks[0][2] }}</p>
     </div>
 </div>
 ```
-But we don't want to show only ONE cheep, but we want to be able to list all of them. How do we do that? Well, with a for loop of course! 
+But we don't want to show only ONE hakk, but we want to be able to list all of them. How do we do that? Well, with a for loop of course! 
 ```html
 <div id="feed">
-    <h2> Cheeps </h2>
-    {% for cheep in cheeps %}
-    <div class="cheep">
-        <b>{{ cheep[0] }}</b>
-        <p>{{ cheep[2] }}</p>
+    <h2> Hakks </h2>
+    {% for hakk in hakks %}
+    <div class="hakk">
+        <b>{{ hakk[0] }}</b>
+        <p>{{ hakk[2] }}</p>
     </div>
     {% endfor %}
 </div>
 ```
-Now it should list all your cheeps!
+Now it should list all your hakks!
 
-One more thing, let's remove that dumb "Success!" page after you post a cheep. That would be in your `receive_cheep` function.
+One more thing, let's remove that dumb "Success!" page after you post a hakk. That would be in your `receive_hakk` function.
 Import the function `redirect` from `flask` at the top of your `server.py` file. As you might've guessed, `redirect` will redirect you to a different page, in our case, back to the home page!
 
 Replace the line
@@ -413,24 +420,77 @@ with
 ```python
 return redirect("/")
 ```
-Now your site should redirect to the homepage after you post a cheep! 
+Now your site should redirect to the homepage after you post a hakk! 
+
+# Step 9: Make this pretty
+
+We've done a lot here. But let's make it look a little better.
+
+First, go back to the **static** folder and make a file called `style.css`
+
+This should contain some basic css to make the app a bit prettier:
+
+```css
+html {
+  background-color: #AAF0D1;
+}
+
+body {
+  font-family: Sans-serif;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+```
+What this does is it takes the body and puts it in the center with `margin: auto`
+
+The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it.
+
+In addition, the background color has been changed to a nice a lovely **menthe**
+
+If you want to understand or learn CSS more feel free to bug **David** after this workshop is over.
+
+Finally, to finish off, let's link this css file in our template by adding this line of code after the `</title>` tag in your main template:
+
+```html
+html {
+  background-color: #AAF0D1;
+}
+
+body {
+  font-family: Sans-serif;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px solid;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+```
 
 You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
 ![](http://i0.kym-cdn.com/photos/images/newsfeed/000/185/885/SANDCASTLES.png?1318627593)
 
-# Step 9: Now what?
+# Step 10: Now what?
 
-Now you've gotten a taste of web development. There are a ton of things you can do from here! Here are a few ideas.
+Now you've gotten a taste of web development. Welcome to the wonderful world. There are a ton of things you can do from here! Here are a few ideas.
 
 ### Easy tweaks
 * Order tweets by most recent ones first
+* Add upvotes. Make reddit!
 * Display how long ago the tweet was made
 * [Make your site pretty with Bootstrap](https://github.com/sharadmv/beginner-hackjam/tree/master/bootstrap)
 
 ### Medium difficulty
 * Display only the first 10 tweets, with an option to load more
-* Allow image/video cheeps
-* [Make your cheeps appear in realtime](https://github.com/sharadmv/beginner-hackjam/tree/master/websocket)
+* Allow image/video hakks
+* [Make your hakks appear in realtime](https://github.com/sharadmv/beginner-hackjam/tree/master/websocket)
 
 ### Challenging exercises
 * Make a user login and registration system

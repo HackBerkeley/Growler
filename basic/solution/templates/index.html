@@ -1,22 +1,22 @@
 <html>
   <head>
-    <title>Cheeper - better than Twitter</title>
-  </head>
+    <title>Hakker - better than Twitter</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">  </head>
   <body>
-    <h1>Cheeper</h1>
-    <form action='/api/cheep' method='POST'>
+    <h1>Hakker</h1>
+    <form action='/api/hakk' method='POST'>
       Name:
       <input name="name" type="text" /> 
-      Cheep:
-      <input name="cheep" type="text" maxlength="76" /> 
+      Hakk:
+      <input name="hakk" type="text" maxlength="76" /> 
       <input type="submit" />
     </form>
     <div id="feed">
-      <h2> Cheeps </h2>
-        {% for cheep in cheeps %}
-        <div class="cheep">
-            <b>{{ cheep[0] }}</b>
-            <p>{{ cheep[2] }}</p>
+      <h2> Hakks </h2>
+        {% for hakk in hakks %}
+        <div class="hakk">
+            <b>{{ hakk[0] }}</b>
+            <p>{{ hakk[2] }}</p>
         </div>
         {% endfor %}
     </div>
