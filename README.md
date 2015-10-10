@@ -1,23 +1,18 @@
-# Welcome to HackJam Spring 2015
+# Welcome to Cal Hacks 2.0!
 
-Welcome to HackJam! If you haven't figured out by now, HackJam is an awesome low pressure hella chill hackathon that the amazing group Hackers @ Berkeley puts on once a semester. It's a great place to work on a side project and network with other amazing hackers.
+Welcome to Cal Hacks! If you haven't figured out by now, Cal Hacks is UC Berkeley's annual hella trill hackathon, put on at the California memorial stadium. It's a great place learn, build, and meet other amazing hackers.
 
 If you've never hacked before, don't worry. And if you have hacked before but want to learn how to do web development with python, you're in the perfect place.
 
-This is a guide that will help you through your first hack. We'll be building **Growler**, a simple twitter like communication app for dysfunctional teams, in flask/python.
+This is a guide that will help you through your first hack. We'll be building **Growler**, a Twitter-like communication app for dysfunctional teams, in Flask and Python.
 
 # Step 0: How to get help
 
 If you find yourself getting stuck, don't just stare at the code for an hour. Instead, do the following:
 
 * **Use Google.** Results from [stackoverflow.com](http://stackoverflow.com) are an amazing resource. You get to utilize the knowledge of the global computer science developer community. However, don't just copy-paste answers from the web. Make sure you understand exactly what's going on before you copy-paste anything.
-* **Ask your neighbors.** Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to **make friends** and find future potential startup cofounders! 
-* **Ask H@B members for help.** Several H@B members have volunteered to assist people today. But you can just ask any of us to be honest. Well, err most of us. We're nice people. We don't bite. Here are just a few of them.
- <table><tr><td><img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xfp1/v/t1.0-9/10885498_877064285678413_1508690135448109619_n.jpg?oh=206866b690a8b7c102133473370e024b&oe=55896EBF&__gda__=1431147062_291e876cb41f9d56acf62322f58456a7" width="200" height="auto"></td>
- <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/426802_3271389590516_1481383110_n.jpg?oh=2cc91f2c3848877f197bbf35a75e8dab&oe=55488DCF" width="200" height="auto"></td>
- <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xpf1/t31.0-8/51813_4726469958853_780877942_o.jpg" width="200" height="auto"></td>
- <td><img src="https://scontent-sjc.xx.fbcdn.net/hphotos-xpa1/l/t31.0-8/10849013_1568766236703666_7856351810450671921_o.jpg" width="200" height="auto"></td>
- </tr><tr><td>Smitha Milli</td><td>Mitchell Karchemsky</td><td>Brian Chu</td><td>David Bui</td></tr></table>
+* **Talk to your neighbors.** Working in groups is extremely productive as each of you can fill the gaps of knowledge the others have. Also, it's a good opportunity to **make friends** and find future potential startup cofounders! 
+* **Ask people for help.** We have hundreds of mentors, from the community and companies alike, who have volunteered to assist you today. You can ask any of us any question you have. We're nice people. We don't bite.
 
 # Step 1: Make sure you have Python 3.4
 
@@ -50,7 +45,7 @@ In your command line, type
 
     pip3 install flask
 
-- If you get the error `'pip3' is not recognized as an internal or external command` blah blah blah, you're probably using Windows. You will need to set your PATH variable so that Windows can locate pip3. You will need to add `C:\<Your Python installation directory here>\Scripts\` to your PATH variable. Ask Google or your neighbor if you're unsure of how to do this, or ask a H@B officer if you're really stuck.
+- If you get the error `'pip3' is not recognized as an internal or external command` blah blah blah, you're probably using Windows. You will need to set your PATH variable so that Windows can locate pip3. You will need to add `C:\<Your Python installation directory here>\Scripts\` to your PATH variable. Ask Google, or your neighbor if you're unsure of how to do this, or ask a mentor if you're really stuck.
 
 # Step 3: Get coding
 
@@ -60,7 +55,7 @@ Now that you have Flask installed, you can get started. First, create a folder t
     cd growler
     touch server.py
 
-- If you are on Windows, you don't have the `touch` command. Just open up your text editor and save a file called `server.py` in the `growler` folder.
+> Note*: If you are on Windows, you don't have the `touch` command. Just open up your text editor and save a file called `server.py` in the `growler` folder.
 
 You just created the `growler` folder and a `server.py` file inside of it. Now open up `server.py` in your favorite text editor.
 
@@ -79,7 +74,7 @@ def hello():
     return "Go Bears!"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 ```
 
 Copy and paste the example and put it in your `server.py` file. This code imports Flask, creates an application (`app`), and defines a "route" (we'll go over that in a second), and finally starts up the server.
@@ -92,7 +87,7 @@ If it says something like: `Running on http://127.0.0.1:5000`, then it's working
 
 > *Note*: both `localhost` and `127.0.0.1` are addresses for your own computer and `5000` is the "port" number.
 
-Now that you have this working, please go through the examples on the Flask [quick start page](http://flask.pocoo.org/docs/quickstart/) and familiarize yourself with the Flask framework. You can stop once you hit [Accessing Request Data](http://flask.pocoo.org/docs/quickstart/#accessing-request-data). Make sure you understand what a route is and how to do routing with Flask. Hint: decorators.
+**Future reading**: This is just the tip of the iceberg that is Flask. Check out  [Flask's quick start page](http://flask.pocoo.org/docs/quickstart/) for more examples and to familiarize yourself with the Flask framework. You can stop once you hit [Accessing Request Data](http://flask.pocoo.org/docs/quickstart/#accessing-request-data). Make sure you understand what a route is and how to do routing with Flask.
 
 # Step 4: Creating a user interface
 
@@ -117,17 +112,13 @@ Now inside your static folder, create a file called `index.html`. In it, put the
 </html>
 ```
 
-This is HTML. It's a language that browsers understand and use to render web pages. In HTML files, you define the content and layout of your web page. `index.html` is the name for the default web page that's rendered when you go to a site, so `index.html` will function as the home page.
-
-If you open the file in your web browser, you'll get a page that says "Hello World!", and on your tab, it should say what we put into the `<title>` tag.
-
-Now, I suggest reading up on the basics of HTML. Make sure you understand how to create forms. Here's a [Codecademy tutorial](http://www.codecademy.com/courses/web-beginner-en-Vfmnp/0/2) on creating web forms!
+This is HTML. It's a language that browsers understand and use to render web pages. In HTML files, you define the content and layout of your web page. `index.html` is the name for the default web page that's rendered when you go to a site, so `index.html` will function as the home page. If you open the file in your web browser, you'll get a page that says "Hello World!", and on your tab, it should say what we put into the `<title>` tag.
 
 So now for some user interface design. If you are design inclined yourself, feel free to throw away my suggestions and use your own.
 
 Our Growler webpage should include a glamorous logo and a space to type your growl and growl it to the world. We also need a feed, to display all the growls that have been growled.
 
-First let's add the logo, which will just be really big text. We can do this with the `<h1>`. Add an `<h1>` tag into the body of `index.html`, which will be our logo.
+First let's add the logo, which will just be really big text. We can do this with `<h1>`. Add an `<h1>` tag into the body of `index.html`, which will be our logo.
 
 ```html
 ...
@@ -137,7 +128,7 @@ First let's add the logo, which will just be really big text. We can do this wit
 ...
 ```
 
-Now let's add the form to write and submit your growls. Hakks are only 76 characters long, right?
+Now let's add the form to write and submit your growls. Growls are only 76 characters long, right?
 
 ```html
 ...
@@ -146,7 +137,7 @@ Now let's add the form to write and submit your growls. Hakks are only 76 charac
   <form>
     Name:
     <input name="name" type="text" /> 
-    Hakk:
+    Growl:
     <input name="growl" type="text" maxlength="76" />
     <input type="submit" />
   </form>
@@ -164,7 +155,9 @@ Awesome! Our awesome, beautiful user interface is almost done. Let's now add a c
 </body>
 ...
 ```
-Cool! This is possibly the best UI I've ever designed. If you feel that it needs improvement, make it look as pretty as you want. Look into using *CSS*.
+Cool! This is possibly the best UI I've ever designed.
+
+**Future reading**: Now, I suggest reading up on the basics of HTML. Make sure you understand how to create forms. Here's a [Codecademy tutorial](http://www.codecademy.com/courses/web-beginner-en-Vfmnp/0/2) on creating web forms! If you feel that this UI needs improvement, make it look as nice as you want. Look into using [*CSS*](https://www.codecademy.com/courses/css-coding-with-style/0/1).
 
 # Step 5: Serving static webpages
 
@@ -182,11 +175,9 @@ def hello():
 ...
 ```
 
-Stop your server using Ctrl-C and start it again (`python3 server.py`), and then go to `localhost:5000`.
+Refresh your browser so that `localhost:5000` is reloaded. You should see your changes. If you get a "connection not found" error, check the console to ensure `server.py` is still running.
 
-> *Note*: You can see your changes to `index.html` immediately by just refreshing, but you need to restart your server (using Ctrl-C) every time you modify `server.py`.
-
-Woot! Your site should now have a basic form for submitting growls showing.
+Woot! Your site should now have a basic form for submitting growls showing. It doesn't actually do anything yet. We're about to fix that.
 
 # Step 6: Sending requests to Flask
 
@@ -195,20 +186,20 @@ Let's quickly establish the notion of a *front end* and a *back end*.
 - **Front end**: what the "client," or web browser sees. In our case, files in `static/` are the front end.
 - **Back end**: the application that handles storing, manipulating, and sending data back to the front end. In our case, `server.py` is the back end, so far.
 
-Right now, Flask just spits out our `index.html` file. What we now want to do is to send the data inputted into your web form to Flask. In `index.html`, add an `action` attribute and a `method` attribute with the following values to your form.
+Right now, Flask just spits out our `index.html` file. What we now want to do is to send the data from your web form to Flask. In `index.html`, add an `action` attribute and a `method` attribute with the following values to your form.
 
 ```html
 ...
 <form action='/api/growl' method="POST">
   Name:
   <input name="name" type="text" /> 
-  Hakk:
+  Growl:
   <input name="growl" type="text" maxlength="76" />
   <input type="submit" />
 </form>
 ```
 
-- The form's **action** is the URL to which it submits its data. When you click the submit button, the form gathers all its data and sends it to the given URL. We're sending the form data to the `/api/growl` URL.
+- The form's **action** is the URL to which it submits its data. When you click the submit button, the browser gathers all the form data and sends it to the given URL. We're sending the form data to the `/api/growl` URL.
 - The form's **method** is the HTTP method, which can be GET, POST, or some other more obscure methods. Essentially, a POST request means that we want to *store* data on the server.
 
 Now that we send the data, we need to handle the data we receive in Flask.  Let's go back to `server.py`.
@@ -223,7 +214,7 @@ The request object allows us to get data and information about incoming HTTP req
 
 Now we need to create a route for `/api/growl` to actually receive the data.
 
-Add the following method into your `server.py` before the `if __name__ == "__main__":`. I'll explain what it does in a bit.
+Add the following method into your `server.py`, underneath the `hello()` function and before the `if __name__ == "__main__":`. I'll explain what it does in a bit.
 
 ```python
 @app.route("/api/growl", methods=["POST"])
@@ -271,13 +262,15 @@ c = conn.cursor()
 ```
 We'll go more into detail on this later. A cursor basically points to a specific row in the database, which allows a programmer to make changes row by row. Now we can begin executing our SQL queries.
 ```python
-c.execute("CREATE TABLE growls (name, datetime, growl)")
+c.execute("CREATE TABLE IF NOT EXISTS growls (name, datetime, growl)")
 ```
-This creates a table named `growls` inside the `growls.db` database with three columns: name, datetime, and growl. Each growl will need to have this information. Cool! Now let's try and add a growl!
+This creates a new table named `growls` inside the `growls.db` database with three columns: name, datetime, and growl. (If you rerun this, the `IF NOT EXISTS` makes sure you don't overwrite your data so far.) Each growl will need to have this information. Cool! Now let's try and add a growl!
+
 ```python
-c.execute("INSERT INTO growls VALUES ('bob', '100', 'Hello world!')")
+c.execute("INSERT INTO growls VALUES ('oski', '100', 'Hello Cal Hacks!')")
 ```
-This creates a growl by the user `bob` with the text `Hello World!`, and that this growl was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
+
+This creates a growl by the user `oski` with the text `Hello Cal Hacks!`, and that this growl was created `100` seconds after January 1, 1970 (This is convention for how Python handles time.).
 
 Let's double check that this works. Now we can read from the database and we should be able to see our growl!
 ```python
@@ -289,11 +282,9 @@ Now let's commit (save) the changes and close the connection.
 conn.commit()
 conn.close()
 ```
-Now save the file and run it by doing `python3 init_db.py`. It should create the `growls.db` file and print out something like `[('bob', '100', 'Hello world!')]` to show that reading from the database was successful.
+Now save the file and run it by doing `python3 init_db.py`. It should create the `growls.db` file and print out something like `[('bob', '100', 'Hello world!')]` to show that reading from the database was successful. Awesome!
 
-Awesome! Hopefully now you have a basic idea of how sqlite works. Now let's integrate it into our site. Read this short guide in the Flask documentation: [Using SQLite 3 with Flask](http://flask.pocoo.org/docs/patterns/sqlite3/)
-
-Let's steal the code they have in the beginning to get and close the database. We'll add this to our `server.py` file. We'll have to replace their call to `connect_to_database` to connect to our database. Also add in the necessary imports, including the `time` module, which we will be using soon. The top of your `server.py` file should look something like this.
+Let's add a databse to our Flask server. We'll add the following code to our `server.py` file. Add in the new Flask imports `g` and the `time` module, which we will be using soon. Let's also make a constant for the name of our databse, so we don't have to repeat the database name everywhere. The top of your `server.py` file should look something like this.
 
 ```python
 import sqlite3
@@ -302,7 +293,11 @@ from flask import Flask, request, g
 
 app = Flask(__name__)
 DATABASE = 'growls.db'
+```
 
+Then let's add two functions to connect and disconnect from the database inside Flask. This code is borrowed from the Flask documentation, and you don't need to understand it right now.
+
+```python
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -319,17 +314,17 @@ def close_connection(exception):
 Now we can write a few more helper functions to make it easier to interact with the database.
 ```python
 def db_read_growls():
-    cur = get_db().cursor()
-    cur.execute("SELECT * FROM growls")
+    c = get_db().cursor()
+    c.execute("SELECT * FROM growls")
     return cur.fetchall()
 ```
 This (as the function name suggests) reads the growls from the database. The function `fetchall` returns them as a list.
 ```python
 def db_add_growl(name, growl):
-    cur = get_db().cursor()
+    c = get_db().cursor()
     t = str(time.time())
     growl_info = (name, t, growl)
-    cur.execute("INSERT INTO growls VALUES (?, ?, ?)", growl_info)
+    c.execute("INSERT INTO growls VALUES (?, ?, ?)", growl_info)
     get_db().commit()
 ```
 Here we are using the `time` function in the `time` module to get the timestamp for the growl. This gives us the number of seconds since the epoch (January 1, 1970). The `execute` function also allows us to pass in a tuple, so we can add in question marks in the query string and they will automatically get filled with the data in our `growl_info` tuple. Finally, after we insert our growl into the database, we need to commit the changes.
@@ -342,13 +337,13 @@ def hello():
     print(growls)
     return app.send_static_file('index.html')
 ```
-Restart your server and then visit your website. Nothing will have changed, but if you check your terminal window running the server, you should see the list of growls getting printed out. You should have one growl in there if you ran the `init_db.py` script. Something like this:
+Reload your browser to [http://127.0.0.1:5000/](http://127.0.0.1:5000/). Nothing will have changed, but if you check your terminal window running the server, you should see the list of growls getting printed out. You should have one growl in there if you ran the `init_db.py` script. Something like this:
 ```
  * Running on http://127.0.0.1:5000/
-[('bob', '100', 'Hello world!')]
+[('oski', '100', 'Hello Cal Hacks!')]
 127.0.0.1 - - [16/Jul/2014 23:10:15] "GET / HTTP/1.1" 200 -
 ```
-Now we need to add in logic to save the growls once we submit the form. For that, we'll need to edit the `receive_cheap` function. Remember the `request.form`? That is basically a dictionary containing all the data we submitted in the form. We'll need to grab that data and pass it into our `db_add_growl` function.
+Now we need to add in logic to save the growls once we submit the form. For that, we'll need to edit the `receive_growl` function. Remember the `request.form`? That is basically a dictionary containing all the data we submitted in the form. We'll need to grab that data and pass it into our `db_add_growl` function.
 ```python
 @app.route("/api/growl", methods=["POST"])
 def receive_growl():
@@ -358,13 +353,15 @@ def receive_growl():
 ```
 That should be everything you need to hook up to your database! Let's make sure it works! Add a tweet using the form on your homepage. It should take you to the page that says "Success!". Now, when you go back to the homepage, refresh your browser, and check your terminal window, you should see more growls getting printed out.
 
-If SQL at all seems a bit intimidating for you, don't worry. There are better an eaisier solutions for databses (which unfortunately may take too long to explain in depth in this workshop.) But feel free to google and ask about SQLAlchemy and MongoDB.
+If SQL at all seems a bit intimidating for you, don't worry. There are better an eaisier solutions for databses (which unfortunately may take too long to explain in depth in this workshop.) But feel free to google and ask about SQLAlchemy and MongoDB. We might also have sponsor workshops on those topics, so check in the Cal Hacks group.
 
 Awesome! The database is hooked up and ready to go.
 
+**Future reading**: We glossed over sqlite and SQL, only covering what was necessary to build Growler. To learn more about it, read this short guide in the Flask documentation: [Using SQLite 3 with Flask](http://flask.pocoo.org/docs/patterns/sqlite3/)
+
 # Step 8: Displaying our growls
 
-Even though the database is showing up, nothing is showing up on our page yet! That's because we're still serving a static html page. We need to write up a *template*. Don't worry, it's not too bad. Hopefully you remember what you read in the flask quickstart guide earlier, if not check out the [Rendering Templates](http://flask.pocoo.org/docs/quickstart/#rendering-templates) section again.
+Even though the database is showing up, nothing is showing up on our page yet! That's because we're still serving a static html page. We need to write up a *template*.
 
 What's a template? Think about what a Facebook profile looks like. Every user has a different Facebook profile: different photos, different friends, different posts. But it would be a pain of Facebook had to make a new static HTML page for each user. Instead, you'll notice that every Facebook profile has a the same basic structure and design. The cover photo is on the top, the profile picture is in the top left, and the wall goes down the middle of the profile. The goal of a templating language is to establish this basic structure, and then leave parts of it ready to be filled in based on the URL and any options you pass in.
 
