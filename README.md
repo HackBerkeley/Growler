@@ -385,10 +385,10 @@ So how does the template get the information from our server? Conveniently, `ren
 ```python
     return render_template('index.html', growls=growls)
 ```
-Now we can access the name `growls` from our `index.html` file. Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/). Lets edit `index.html` and have it display our first growl. Remember, a growl is a tuple with three elements (name, time, growl), and `growls` is a list of them. Find the `div` container with the id `"feed"` and insert the following.
+Now we can access `growls` from our `index.html` file. Lets edit `index.html` and have it display our first growl. Remember, a growl is a tuple with three elements (name, time, growl), and `growls` is a list of them. Find the `div` container with the id `"feed"` and insert the following.
 ```html
 <div id="feed">
-    <h2> Hakks </h2>
+    <h2>Growls</h2>
     <div class="growl">
         <b>{{ growls[0][0] }}</b>
         <p>{{ growls[0][2] }}</p>
@@ -409,10 +409,17 @@ But we don't want to show only ONE growl, but we want to be able to list all of 
 ```
 Now it should list all your growls!
 
-One more thing, let's remove that dumb "Success!" page after you post a growl. That would be in your `receive_growl` function.
-Import the function `redirect` from `flask` at the top of your `server.py` file. As you might've guessed, `redirect` will redirect you to a different page, in our case, back to the home page!
+One more thing, let's change that "Success!" page after you post a growl. That would be in your `receive_growl` function.
 
-Replace the line
+Let's go back to server.py. Import the function `redirect` from `flask` at the top of your `server.py` file. As you might've guessed, `redirect` will redirect you to a different page, in our case, back to the home page!
+
+```python
+import sqlite3
+import time
+from flask import Flask, g, request, render_template
+```
+
+Now, inside your `receive_growl()` function, replace the line
 ```python
 return "Success!"
 ```
@@ -421,6 +428,8 @@ with
 return redirect("/")
 ```
 Now your site should redirect to the homepage after you post a growl!
+
+**Future reading**: Take a glance at the [Template Designer Documentation](http://jinja.pocoo.org/docs/templates/) to learn more about how to use templates in Flask.
 
 # Step 9: Make this pretty
 
@@ -436,28 +445,32 @@ html {
 }
 
 body {
-  font-family: Sans-serif;
+  font-family: sans-serif;
   max-width: 500px;
   margin: auto;
   padding: 20px;
   margin-top: 10px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 ```
 What this does is it takes the body and puts it in the center with `margin: auto`
 
-The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it. This s pretty self explanatory.
+The rest of the code limits the size of the body, makes sure the background is white, positions it, and then puts a nice subtle drop shadow on it. This is pretty self explanatory.
 
 In addition, the background color has been changed to a nice a lovely **menthe**.
 
-If you want to understand or learn CSS more feel free to bug **David** or just ask around!
+If you want to understand or learn CSS more, check out [this Codecademy tutorial](https://www.codecademy.com/courses/css-coding-with-style/0/1) or feel free to ask a mentor! This example is so you know how to include the CSS made by the frontend person on your team (if you have one), so we won't explore CSS here.
 
 Finally, to finish off, let's link this css file in our template by adding this line of code after the `</title>` tag in your main template:
 
 ```html
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+...
+  <title>Growler - better than Twitter</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+...
 ```
 
 You've just built your first hack! Show your friends! Tell your mom! Start a billion dollar company!
@@ -465,22 +478,22 @@ You've just built your first hack! Show your friends! Tell your mom! Start a bil
 
 # Step 10: Now what?
 
-Now you've gotten a taste of web development. Welcome to the wonderful world. There are a ton of things you can do from here! Here are a few ideas.
+Now you've gotten a taste of backend development. Welcome to the wonderful world. There are a ton of things you can do from here! Here are a few ideas.
 
 ### Easy tweaks
 * Order tweets by most recent ones first
-* Add upvotes. Make reddit!
 * Display how long ago the tweet was made
-* [Make your site pretty with Bootstrap](https://github.com/sharadmv/beginner-hackjam/tree/master/bootstrap)
+* Make your site pretty by adding Bootstrap CSS
+* People can submit Growls that have no content or user. Make sure that growls are well-formed.
 
 ### Medium difficulty
 * Display only the first 10 tweets, with an option to load more
 * Allow image/video growls
-* [Make your growls appear in realtime](https://github.com/sharadmv/beginner-hackjam/tree/master/websocket)
+* Deploy your site to the Internet with Heroku
 
 ### Challenging exercises
 * Make a user login and registration system
+* Add upvotes. Make reddit!
 * Add followers
 * Add a news feed (ranking tweets, updates in real time)
-* [Deploy your site to the Internet with Heroku](https://github.com/sharadmv/beginner-hackjam/tree/master/heroku)
 * Make a billion dollars by transforming this hack into a company
