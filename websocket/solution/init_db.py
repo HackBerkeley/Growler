@@ -1,11 +1,11 @@
 import sqlite3
-conn = sqlite3.connect('cheeps.db')
+conn = sqlite3.connect('growls.db')
 
 c = conn.cursor()
-c.execute("CREATE TABLE cheeps (name, datetime, cheep)")
-c.execute("INSERT INTO cheeps VALUES ('richie', '100', 'Hello world!')")
-c.execute("SELECT * FROM cheeps")
+c.execute("CREATE TABLE growls (name, datetime, growl)")
+c.execute("INSERT INTO growls VALUES ('richie', '100', 'Hello world!')")
+c.execute("SELECT * FROM growls")
 print(c.fetchall())
-#c.execute("delete from cheeps")
+#c.execute("delete from growls")
 conn.commit()
 conn.close()

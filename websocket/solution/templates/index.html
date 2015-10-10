@@ -1,15 +1,15 @@
 <html>
   <head>
-    <title>Cheeper - better than Twitter</title>
+    <title>Growler - better than Twitter</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
     <script>
       $(document).ready(function(){
         $('#send').click(function(event){
-          cheep = {
+          growl = {
             name : $("#name").val(),
-            cheep : $("#cheep").val(),
+            growl : $("#growl").val(),
           }
-          ws.send(JSON.stringify(cheep));
+          ws.send(JSON.stringify(growl));
           return false;
         });
         if ("WebSocket" in window) {
@@ -17,7 +17,7 @@
           ws.onmessage = function (msg) {
             data = msg.data;
             data = JSON.parse(data);
-            $("#feed").append("<b>"+data.name+"</b><p>"+data.cheep+"</p>");
+            $("#feed").append("<b>"+data.name+"</b><p>"+data.growl+"</p>");
           };
           ws.onclose = function() {
             console.log("Closed");
@@ -29,20 +29,20 @@
     </script>
   </head>
   <body>
-    <h1>Cheeper</h1>
+    <h1>Growler</h1>
     <form>
       Name:
       <input id='name' name="name" type="text" /> 
-      Cheep:
-      <input id='cheep' name="cheep" type="text" maxlength="76" /> 
+      Growl:
+      <input id='growl' name="growl" type="text" maxlength="76" />
       <button id='send' value='Send'>Send</button>
     </form>
     <div id="feed">
-      <h2> Cheeps </h2>
-        {% for cheep in cheeps %}
-        <div class="cheepDiv">
-            <b>{{ cheep[0] }}</b>
-            <p>{{ cheep[2] }}</p>
+      <h2> Growls </h2>
+        {% for growl in growls %}
+        <div class="growlDiv">
+            <b>{{ growl[0] }}</b>
+            <p>{{ growl[2] }}</p>
         </div>
         {% endfor %}
     </div>

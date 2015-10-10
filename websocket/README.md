@@ -1,9 +1,9 @@
-Cheeper in Realtime
+Growler in Realtime
 ================================
 
 This tutorial is a follow up to the beginner hack. This tutorial will be more about you exploring different technologies and experimenting with them and will involve less sample code than the previous guide.
 
-Let's add realtime functionality to Cheeper. When anyone makes a Cheep, we want it to appear *instantly* on everyone else's page.
+Let's add realtime functionality to Growler. When anyone makes a Growl, we want it to appear *instantly* on everyone else's page.
 
 This is actually super tricky. Realtime functionality has been prevalent in the web for a very long time, but only recently have technologies come out that have made it practical.
 
@@ -47,18 +47,18 @@ This route creates a websocket to the client who made the request to `/ws`. Webs
 
 With these methods, you can send information back and forth between the client and the server whenever you want to.
 
-Now with this in mind, you have to design a protocol to let everyone on the site know when a cheep is sent, and send the cheep down to all of them.
+Now with this in mind, you have to design a protocol to let everyone on the site know when a growl is sent, and send the growl down to all of them.
 
 Things to consider:
 * When a websocket route returns, the websocket is terminated, meaning you have to keep the request alive forever. Consider using a `while True:`.
-* You have to maintain a list of everyone's websockets so that you can broadcast the latest cheep to everyone via their websocket
+* You have to maintain a list of everyone's websockets so that you can broadcast the latest growl to everyone via their websocket
 * You have to devise some sort of protocol for the client and server to communicate to each other. Websockets support sending strings, so you'll need to organize how you send down information. Consider using `json`.
 
 Step 2: Websocket client
 ------------------------
 Writing the websocket client will be very much different than how the server was structured, but the nice part is that most of the logic has been written already. By this point, you should have a Flask server that has a route for websockets and broadcasts updates to all the websockets via some protocol you have devised.
 
-All the client will do is instead of sending cheeps via a form, we'll send the information through the websocket. Here's how you would construct a websocket on the client side. It's all done in javascript.
+All the client will do is instead of sending growls via a form, we'll send the information through the websocket. Here's how you would construct a websocket on the client side. It's all done in javascript.
 
 ```javascript
 ws = new WebSocket("ws://" + document.domain + ":5000/ws");

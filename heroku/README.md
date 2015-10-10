@@ -16,4 +16,4 @@ We honestly can't do much better than the documentation that Heroku provides, bu
 
 [Here are the instructions](https://devcenter.heroku.com/articles/getting-started-with-python) for deploying your project to Heroku. You'll notice that we already did some of these steps in the first tutorial. You can actually just run `pip install gunicorn` and then start from the section [Declare process types with Procfile](https://devcenter.heroku.com/articles/getting-started-with-python#declare-process-types-with-procfile). Keep in mind that this guide uses the file `hello.py` for their server, while our file is called `server.py`. Basically our Procfile will say `web: gunicorn server:app` instead of `web: gunicorn hello:app`.
 
-By the time you've gone through these steps, you will have deployed your site to the web! Get on Facebook and message your friends and tell them to user your app! Call your relatives and get them to post some Cheeps!
+By the time you've gone through these steps, you will have deployed your site to the web! Get on Facebook and message your friends and tell them to user your app! Call your relatives and get them to post some Growls!

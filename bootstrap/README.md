@@ -1,4 +1,4 @@
-Back in 2006, a group of guys created a Cheeper clone that took off and made them millionaires. I'm not sure if you've heard of this site, but it's called Twitter. It's not quite as cool as what we've built.
+Back in 2006, a group of guys created a Growler clone that took off and made them millionaires. I'm not sure if you've heard of this site, but it's called Twitter. It's not quite as cool as what we've built.
 
 Anyways, one awesome thing that a team of engineers at Twitter did was create something called Bootstrap. Bootstrap is a tool that provides you with a bunch of customizable features to make your website look pretty. Among them are a grid system to help you organize and place your content, good typogrpahy choices, pretty button designs, and cool animations.
 
@@ -31,7 +31,7 @@ You might also notice that the source code links to a custom CSS file specifical
 <!-- Custom styles for this template -->
 <link href="starter-template.css" rel="stylesheet">
 ```
-Copy over the contents of `starter-templates.css`, but let's name our file `cheeper.css` and put it in the (you guessed it) `static/css` folder, don't forget to change the file path. From now on, you can use this CSS file for all the custom CSS that you need for your site page.
+Copy over the contents of `starter-templates.css`, but let's name our file `growler.css` and put it in the (you guessed it) `static/css` folder, don't forget to change the file path. From now on, you can use this CSS file for all the custom CSS that you need for your site page.
 
 At this point, the starter template should be up and running on your site. Awesome! Take the time to explore the Bootstrap documentation and see what you can add on for your site. This site is yours now, and you can do whatever you want with it :)
 

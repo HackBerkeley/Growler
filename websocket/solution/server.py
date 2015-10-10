@@ -6,7 +6,7 @@ import json
 from flask import Flask, request, g, render_template
 
 app = Flask(__name__)
-DATABASE = 'cheeps.db'
+DATABASE = 'growls.db'
 counter = 0
 websockets = {}
 
@@ -29,22 +29,22 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-def db_read_cheeps():
+def db_read_growls():
     cur = get_db().cursor()
-    cur.execute("SELECT * FROM cheeps")
+    cur.execute("SELECT * FROM growls")
     return cur.fetchall()
 
-def db_add_cheep(name, cheep):
+def db_add_growl(name, growl):
     cur = get_db().cursor()
     t = str(time.time())
-    cheep_info = (name, t, cheep)
-    cur.execute("INSERT INTO cheeps VALUES (?, ?, ?)", cheep_info)
+    growl_info = (name, t, growl)
+    cur.execute("INSERT INTO growls VALUES (?, ?, ?)", growl_info)
     get_db().commit()
 
 @app.route("/")
 def hello():
-    cheeps = db_read_cheeps()
-    return render_template('index.html', cheeps=cheeps)
+    growls = db_read_growls()
+    return render_template('index.html', growls=growls)
 
 def send_message(message):
     msg = WSMessage(message)
@@ -62,7 +62,7 @@ def api():
         while True:
             message = ws.receive()
             message = json.loads(message)
-            db_add_cheep(message['name'], message['cheep'])
+            db_add_growl(message['name'], message['growl'])
             send_message(message)
         del websockets[current]
         return
