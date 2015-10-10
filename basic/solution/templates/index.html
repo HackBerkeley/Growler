@@ -1,22 +1,22 @@
 <html>
   <head>
-    <title>Hakker - better than Twitter</title>
+    <title>Growler - better than Twitter</title>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">  </head>
   <body>
-    <h1>Hakker</h1>
-    <form action='/api/hakk' method='POST'>
+    <h1>Growler</h1>
+    <form action='/api/growl' method='POST'>
       Name:
       <input name="name" type="text" /> 
       Hakk:
-      <input name="hakk" type="text" maxlength="76" /> 
+      <input name="growl" type="text" maxlength="76" />
       <input type="submit" />
     </form>
     <div id="feed">
       <h2> Hakks </h2>
-        {% for hakk in hakks %}
-        <div class="hakk">
-            <b>{{ hakk[0] }}</b>
-            <p>{{ hakk[2] }}</p>
+        {% for growl in growls %}
+        <div class="growl">
+            <b>{{ growl[0] }}</b>
+            <p>{{ growl[2] }}</p>
         </div>
         {% endfor %}
     </div>

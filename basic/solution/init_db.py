@@ -1,10 +1,10 @@
 import sqlite3
-conn = sqlite3.connect('hakks.db')
+conn = sqlite3.connect('growls.db')
 
 c = conn.cursor()
-c.execute("CREATE TABLE hakks (name, datetime, hakk)")
-c.execute("INSERT INTO hakks VALUES ('richie', '100', 'Hello world!')")
-c.execute("SELECT * FROM hakks")
+c.execute("CREATE TABLE growls (name, datetime, growl)")
+c.execute("INSERT INTO growls VALUES ('richie', '100', 'Hello world!')")
+c.execute("SELECT * FROM growls")
 print(c.fetchall())
 conn.commit()
 conn.close()

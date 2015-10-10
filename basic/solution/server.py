@@ -3,7 +3,7 @@ import time
 from flask import Flask, request, g, render_template
 
 app = Flask(__name__)
-DATABASE = 'hakks.db'
+DATABASE = 'growls.db'
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -17,28 +17,28 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-def db_read_hakks():
+def db_read_growls():
     cur = get_db().cursor()
-    cur.execute("SELECT * FROM hakks")
+    cur.execute("SELECT * FROM growls")
     return cur.fetchall()
 
-def db_add_hakk(name, hakk):
+def db_add_growl(name, growl):
     cur = get_db().cursor()
     t = str(time.time())
-    hakk_info = (name, t, hakk)
-    cur.execute("INSERT INTO hakks VALUES (?, ?, ?)", hakk_info)
+    growl_info = (name, t, growl)
+    cur.execute("INSERT INTO growls VALUES (?, ?, ?)", growl_info)
     get_db().commit()
 
 @app.route("/")
 def hello():
-    hakks = db_read_hakks()
-    print(hakks)
-    return render_template('index.html', hakks=hakks)
+    growls = db_read_growls()
+    print(growls)
+    return render_template('index.html', growls=growls)
 
-@app.route("/api/hakk", methods=["POST"])
-def receive_hakk():
+@app.route("/api/growl", methods=["POST"])
+def receive_growl():
     print(request.form)
-    db_add_hakk(request.form['name'], request.form['hakk'])
+    db_add_growl(request.form['name'], request.form['growl'])
     return "Success"
 
 if __name__ == "__main__":
